@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flick2movies/constants.dart';
 String finalEmail='';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -20,6 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 4));
     if((finalEmail!=null)&&(finalEmail!='')){
       Navigator.pushNamed(context, 'home');
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      currentUserId = auth.currentUser!.uid.toString();
+      print(currentUserId);
 
     }else{
       Navigator.pushNamed(context, 'login_screen');

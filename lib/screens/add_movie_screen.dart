@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flick2movies/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:flick2movies/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class AddMovieScreen extends StatefulWidget {
   const AddMovieScreen({Key? key}) : super(key: key);
@@ -338,7 +340,7 @@ iconEnabledColor: Colors.grey[600],
                   ),
                 ),
                 SizedBox(height: 10,),
-                Center(
+                if(currentUserId ==chinkuId)    Center(
                   child: RatingBar.builder(
                     allowHalfRating: true,
                     itemSize: 35,
@@ -351,7 +353,7 @@ iconEnabledColor: Colors.grey[600],
                     itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
                     itemBuilder: (context, _) => Icon(
                       Icons.star,
-                      color: Color(0xff477b72),
+                      color: Colors.pinkAccent,
                     ),
                     onRatingUpdate: (rating) {
                       print(rating);
@@ -360,7 +362,7 @@ iconEnabledColor: Colors.grey[600],
 
                   ),
                 ),
-                Center(
+              if(currentUserId ==snowId)  Center(
                   child: RatingBar.builder(
                     allowHalfRating: true,
                     itemSize: 35,
@@ -373,7 +375,7 @@ iconEnabledColor: Colors.grey[600],
                     itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
                     itemBuilder: (context, _) => Icon(
                       Icons.star,
-                      color: Color(0xff477b72),
+                      color: Colors.blueAccent,
                     ),
                     onRatingUpdate: (rating) {
                       print(rating);
@@ -476,12 +478,34 @@ iconEnabledColor: Colors.grey[600],
                       print(snowRt);
                       print(genreFinal);
                       var collection = FirebaseFirestore.instance.collection('Movies');
-                      if(chinkuRt!=null&& snowRt!=null && genreFinal.length>0 && movieName!=null){
+                      if(genreFinal.length>0 && movieName!=null&& currentUserId ==chinkuId){
                         collection
                             .doc(movieName) // <-- Document ID
                             .set(
                           {'chinku-fav': false,
                             'chinku-rating':chinkuRt,
+                            'chinku-pending':false,
+                            'genre':FieldValue.arrayUnion(genreFinal),
+                            'language':dropdownvalue2,
+                            'month':dropdownvalue1,
+                            'year':dropdownvalue,
+                            'name':movieName,
+                            'snow-fav': false,
+                            'snow-rating':'0',
+                            'snow-pending':true,
+                            'year-of-release':selectedYr,
+
+
+                          },
+                        ) // <-- Your data
+                            .then((_) => print('Added'))
+                            .catchError((error) => print('Add failed: $error'));
+                      }else if(genreFinal.length>0 && movieName!=null&&currentUserId ==snowId){
+                        collection
+                            .doc(movieName) // <-- Document ID
+                            .set(
+                          {'chinku-fav': false,
+                            'chinku-rating':'0',
                             'chinku-pending':true,
                             'genre':FieldValue.arrayUnion(genreFinal),
                             'language':dropdownvalue2,
@@ -490,15 +514,16 @@ iconEnabledColor: Colors.grey[600],
                             'name':movieName,
                             'snow-fav': false,
                             'snow-rating':snowRt,
-                            'snow-pending':true,
-                            'year-of-release':selectedYr
+                            'snow-pending':false,
+                            'year-of-release':selectedYr,
+
 
                           },
                         ) // <-- Your data
                             .then((_) => print('Added'))
                             .catchError((error) => print('Add failed: $error'));
                       }else{
-                        print('there is some error');
+                        print('some error occured');
                       }
 
                     },

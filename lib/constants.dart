@@ -45,6 +45,7 @@ String currentMovieChinkuRt='';
 String currentMovieSnowRt='';
 String chinkuId = '8t8iOIeGeUaRWDjFqzN6PoqM4Cp1';
 String snowId='lm84e51AryXitb8MU5spH3eXlB03';
+String currentUserId ='';
 const kPrimaryColor = Color(0xFF6F35A5);
 
 const kPrimaryLightColor = Color(0xFFF1E6FF);

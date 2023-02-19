@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
+  bool showPassword =true;
   @override
 
   @override
@@ -34,36 +35,77 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 200.0,
                 child: Image.asset('lib/images/flick logo.png'),
               ),
+              Center(child: Text('Flick',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 35 ),)),
+              Center(child: Text('Movies',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize:25  ),)),
               SizedBox(
                 height: 48.0,
               ),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  email = value;
-                },
-                decoration:
-                kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+              Container(
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  onChanged: (val){
+                    email=val;
+                  },
+                  style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: GestureDetector(child: Icon(Icons.movie,color: Colors.grey.shade600,),onTap: (){
+                    },
+                    ),
+                    labelText: 'Enter Email',
+                    labelStyle: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 16
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 8.0,
               ),
-              TextField(
-                obscureText: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  password = value;
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password'),
+
+              Container(
+                child: TextFormField(
+                  obscureText: showPassword,
+                  onChanged: (val){
+                    password=val;
+                  },
+                  style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    suffixIcon: showPassword?GestureDetector(onTap:(){
+                      setState(() {
+                        showPassword =false;
+                      });
+                    },child: Icon(Icons.visibility_off ,color: Colors.grey.shade600,)):GestureDetector(onTap: (){
+                      setState(() {
+                        showPassword=true;
+                      });
+                    },child: Icon(Icons.visibility,color: Colors.grey.shade600,)),
+                    prefixIcon: Icon(Icons.movie,color: Colors.grey.shade600,),
+                    labelText: 'Enter Password',
+                    labelStyle: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 16
+                    ),
+                  ),
+                ),
               ),
+
               SizedBox(
                 height: 24.0,
               ),
               RoundedButton(
                 title: 'Log In',
-                colour: Colors.lightBlueAccent,
+                colour: Color(0xff477b72),
                 onPressed: () async {
                   setState(() {
                     showSpinner = true;
