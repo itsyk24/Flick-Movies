@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flick2movies/components/profile_widget.dart';
 import 'package:flick2movies/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -58,28 +59,51 @@ class SettingsScreen extends StatelessWidget {
                     SizedBox(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
+                        children:  [
                           ProfileWidget(
+                            onTap: (){
+                            },
                             icon: Icons.person,
                             title: 'My Profile',
                           ),
                           ProfileWidget(
+                            onTap: (){
+
+                            },
                             icon: Icons.settings,
                             title: 'Settings',
                           ),
                           ProfileWidget(
+                            onTap: (){
+
+                            },
                             icon: Icons.notifications,
                             title: 'Notifications',
                           ),
                           ProfileWidget(
+                            onTap: (){
+
+                            },
                             icon: Icons.chat,
                             title: 'FAQs',
                           ),
                           ProfileWidget(
+                            onTap: (){
+
+                            },
                             icon: Icons.share,
                             title: 'Share',
                           ),
                           ProfileWidget(
+                            onTap: ()async{
+
+                              final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                              print (sharedPreferences.getString('email'));
+                              sharedPreferences.remove('email');
+
+                              Navigator.pushNamed(context,'login_screen');
+
+                            },
                             icon: Icons.logout,
                             title: 'Log Out',
                           ),
