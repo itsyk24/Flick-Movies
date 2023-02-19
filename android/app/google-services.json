@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "558764881769",
+    "firebase_url": "https://baka-app-default-rtdb.firebaseio.com",
+    "project_id": "baka-app",
+    "storage_bucket": "baka-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558764881769:android:9da187582004aa2c4a6ff8",
+        "android_client_info": {
+          "package_name": "com.example.flick2movies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558764881769-u185cuulkoc9larusqthdhjn6o5jq0k9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW68mEXDiVWmSiMRVYcTMRKsszJhasIxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558764881769-u185cuulkoc9larusqthdhjn6o5jq0k9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558764881769:android:79d2003c47bf9c6c4a6ff8",
+        "android_client_info": {
+          "package_name": "yk24.com.baka_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558764881769-u185cuulkoc9larusqthdhjn6o5jq0k9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW68mEXDiVWmSiMRVYcTMRKsszJhasIxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558764881769-u185cuulkoc9larusqthdhjn6o5jq0k9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
