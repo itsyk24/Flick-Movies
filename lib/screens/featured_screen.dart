@@ -58,7 +58,7 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
                   CarousalBlock('This Year', '432',
                       'https://media-assets.wired.it/photos/615f31bbadb81ae4f94c6b46/16:9/w_2580,c_limit/1519651737_the-office.jpg'
                   ),
-                  CarousalBlock('This Month', '432',
+                  CarousalBlock('This Month', '132',
                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR50rZYdLpxK9BZI6VyZlocDRhu0JmniJuNWFy1S8pf88_t9jShJBpF2qsHQ-k-zGBHrBA&usqp=CAU'
                   ),
                   CarousalBlock('Web Series', '374',
