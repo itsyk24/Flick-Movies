@@ -1,9 +1,17 @@
+import 'package:flick2movies/data_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
 import 'package:flick2movies/components/carousal_block.dart';
-class FeaturedScreen extends StatelessWidget {
+import 'package:flick2movies/constants.dart';
+class FeaturedScreen extends StatefulWidget {
   const FeaturedScreen({Key? key}) : super(key: key);
 
+  @override
+  State<FeaturedScreen> createState() => _FeaturedScreenState();
+}
+
+class _FeaturedScreenState extends State<FeaturedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,16 +30,19 @@ class FeaturedScreen extends StatelessWidget {
                     Text('Flick Movies',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 20  ),),
                   ],
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.notifications_active,
-                    size: 25,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    // do something
-                  },
-                )
+                GetBuilder<DataController>(
+                    init: DataController(),
+                    builder: (val){
+                      return IconButton(onPressed: (){
+                        val.getNotiData(true).then((value) {
+                          snapData=value;
+                          setState(() {
+                            Navigator.pushNamed(context,'filter-results');
+                          });
+                        });
+                      }, icon: Icon(Icons.notifications_active,size: 30,),color: Colors.pinkAccent,);
+                    }
+                ),
               ],
             ),
 
@@ -60,7 +71,7 @@ class FeaturedScreen extends StatelessWidget {
                 ],
                 options: CarouselOptions(
                   autoPlay: true,
-                  height: 300,
+                  height: 350,
                   autoPlayCurve: Curves.easeInOut,
                   enlargeCenterPage: true,
                   viewportFraction: 0.85,

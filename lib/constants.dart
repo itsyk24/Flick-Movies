@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 const kSendButtonTextStyle = TextStyle(
   color: Colors.lightBlueAccent,
   fontWeight: FontWeight.bold,
@@ -43,6 +44,7 @@ List currentMovieGenre =[];
 String currentMovieLan='';
 String currentMovieChinkuRt='';
 String currentMovieSnowRt='';
+String filterYear = '2022';
 String chinkuId = '8t8iOIeGeUaRWDjFqzN6PoqM4Cp1';
 String snowId='lm84e51AryXitb8MU5spH3eXlB03';
 String currentUserId ='';
@@ -52,7 +54,7 @@ const kPrimaryLightColor = Color(0xFFF1E6FF);
 
 const double defaultPadding = 16.0;
 
-
+late QuerySnapshot snapData;
 
 
 class Constants {
