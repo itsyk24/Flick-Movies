@@ -134,8 +134,8 @@ var languageList =[
 
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage('https://static.vecteezy.com/system/resources/previews/011/835/060/non_2x/retro-movie-ticket-png.png'),
-                          fit: BoxFit.scaleDown,
+                          image: NetworkImage('https://images.squarespace-cdn.com/content/v1/59885afbf9a61e3bd6987ecb/1554492356398-S165YYXKD7UC6RR650EY/shaw.jpg?format=1500w'),
+                          fit: BoxFit.cover,
                         ),
 
                         borderRadius: BorderRadius.all(Radius.circular(20))
