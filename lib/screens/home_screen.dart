@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // f7f6f9
             color: Color(0xff1f1f1f),
             activeColor: Colors.white,
-            tabBackgroundColor: Color(0xff1f1f1f),
+            tabBackgroundColor: Color(0xff477b72),
             gap: 8,
             onTabChange: (index){
               setState(() {

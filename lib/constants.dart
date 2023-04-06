@@ -6,6 +6,16 @@ const kSendButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 18.0,
 );
+ String ftdTotal='0';
+String ftdWebseries='0';
+String ftdAnime='0';
+String ftdThisMonth='';
+String ftdThisYr='';
+String currentYr = '';
+String currentMonth = '';
+String chinkuNotiCount = '';
+String snowNotiCount = '';
+
 
 const kMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -21,7 +31,20 @@ const kMessageContainerDecoration = BoxDecoration(
  List yearList =[];
 int currentYear = DateTime.now().year;
 int startingYear = 2019;
-
+var currMonths = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -40,8 +63,10 @@ const kTextFieldDecoration = InputDecoration(
 String currentMovie='';
 String currentMovieRlsYr='';
 String currentMovieWtchYr='';
+String currentMovieWtchMonth='';
 List currentMovieGenre =[];
 String currentMovieLan='';
+bool notificato = false;
 String currentMovieChinkuRt='';
 String currentMovieSnowRt='';
 String filterYear = '2022';

@@ -16,10 +16,27 @@ class DataController extends GetxController{
         .where('name', isGreaterThanOrEqualTo: queryString)
         .get();
   }
-  Future getNotiData(bool queryString)async{
+  Future getGenreData(String queryString)async{
+    return FirebaseFirestore.instance
+        .collection('Movies')
+        .where("genre", arrayContains: queryString).get();
+  }
+  Future getLanData(String queryString)async{
+    return FirebaseFirestore.instance
+        .collection('Movies')
+        .where('language', isEqualTo: queryString)
+        .get();
+  }
+  Future getchinkuNotiData(bool queryString)async{
     return FirebaseFirestore.instance
         .collection('Movies')
         .where('chinku-pending', isEqualTo: queryString)
+        .get();
+  }
+  Future getsnowNotiData(bool queryString)async{
+    return FirebaseFirestore.instance
+        .collection('Movies')
+        .where('snow-pending', isEqualTo: queryString)
         .get();
   }
   getData(String filterYr)async{
@@ -27,6 +44,56 @@ class DataController extends GetxController{
         .collection('Movies')
         .where('year', isEqualTo:filterYr)
         .get();
+  }
+  getRlsYrData(String filterYr)async{
+    return  FirebaseFirestore.instance
+        .collection('Movies')
+        .where('year-of-release', isEqualTo:filterYr)
+        .get();
+  }
+  getchinkufavData()async{
+    return  FirebaseFirestore.instance
+        .collection('Movies')
+        .where('chinku-fav', isEqualTo:true)
+        .get();
+  }
+  // getonlyMovieData()async{
+  //   return FirebaseFirestore.instance
+  //       .collection('Movies')
+  //       .where("genre",arrayContainsAny :{'Anime' ,'Web-Series'})
+  //       .get();
+  // }
+  getmoriartyfavData()async{
+    return  FirebaseFirestore.instance
+        .collection('Movies')
+        .where('snow-fav', isEqualTo:true)
+        .get();
+  }
+  getWatchData(String filterYr, String filterMon)async{
+    if(filterYr == 'All'&& filterMon== 'All'){
+      return FirebaseFirestore.instance
+          .collection('Movies')
+          .get();
+    }
+    if(filterYr == 'All'&& filterMon!= 'All'){
+      return FirebaseFirestore.instance
+    .collection('Movies')
+        .where('month', isEqualTo:filterMon)
+        .get();
+    }
+    if(filterYr != 'All'&& filterMon== 'All'){
+      return FirebaseFirestore.instance
+          .collection('Movies')
+          .where('year', isEqualTo:filterYr)
+          .get();
+    }
+    if(filterYr != 'All'&& filterMon!= 'All'){
+      return FirebaseFirestore.instance
+          .collection('Movies')
+          .where('year', isEqualTo:filterYr)
+          .where('month', isEqualTo:filterMon)
+          .get();
+    }
   }
 }
 

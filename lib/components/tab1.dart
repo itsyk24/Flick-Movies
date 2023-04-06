@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-class Tab1 extends StatefulWidget {
-  const Tab1({Key? key}) : super(key: key);
+import 'package:get/get.dart';
+import 'package:flick2movies/data_controller.dart';
+import 'package:flick2movies/constants.dart';
+class GenreTab extends StatefulWidget {
+  const GenreTab({Key? key}) : super(key: key);
 
   @override
-  State<Tab1> createState() => _Tab1State();
+  State<GenreTab> createState() => _GenreTabState();
 }
 
-class _Tab1State extends State<Tab1> {
-  String dropdownvalue = '2023';
+class _GenreTabState extends State<GenreTab> {
+  String dropdownvalue = 'Drama';
 
   bool drop0trigger = false;
 
-  String dropdownvalue1 = 'January';
-
-  bool drop1trigger = false;
-
-  String dropdownvalue2 = 'English';
-
-  bool drop2trigger = false;
-
-  String movieName='';
+  // String dropdownvalue1 = 'January';
+  //
+  // bool drop1trigger = false;
+  //
+  // String dropdownvalue2 = 'English';
+  //
+  // bool drop2trigger = false;
+  //
+  // String movieName='';
 
   var watchyrs = [
     '2019',
@@ -36,6 +39,7 @@ class _Tab1State extends State<Tab1> {
     '2030',
 
   ];
+  var genre1list = ['Web-Series','Anime','Romance','War','Mystery','Action','Adventure','Musical','Documentry','Crime','Drama','Comedy','War','Thriller'];
 
   var watchmonths = [
     'January',
@@ -54,13 +58,12 @@ class _Tab1State extends State<Tab1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:Center(
+    return Container(
+      color: Color(0xfff6f6f6),
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Genre:',style: TextStyle(color: Color(0xfff6f6f6),fontSize: 16,fontWeight: FontWeight.w500),),
-
 
             DecoratedBox(
               decoration:BoxDecoration(
@@ -79,12 +82,12 @@ class _Tab1State extends State<Tab1> {
                     child: DropdownButton(
                       iconSize: 30,
                       // Initial Value
-                      hint: Text('Year',style: TextStyle(color: Colors.grey.shade600,fontSize: 16,fontWeight: FontWeight.w700)),
+                      hint: Text('Select Genre',style: TextStyle(color: Colors.grey.shade600,fontSize: 16,fontWeight: FontWeight.w700)),
                       iconEnabledColor: Colors.grey[600],
                       value: drop0trigger?dropdownvalue:null,style: TextStyle(color: Colors.grey.shade600,fontSize: 16,fontWeight: FontWeight.w700),
 
                       // Array list of items
-                      items: watchmonths.map((String items) {
+                      items: genre1list.map((String items) {
                         return DropdownMenuItem(
                           value: items,
                           child: Text(items),
@@ -103,21 +106,35 @@ class _Tab1State extends State<Tab1> {
               ),
             ),
 
-            SizedBox(
-              width: 40,
-              height: 40,
-              child: FittedBox(
-                child: FloatingActionButton(
-                  backgroundColor:  Color(0xff477b72),
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.filter_alt_outlined,
-                    size: 40,
-                    color:  Color(0xfff6f6f6),
-                  ),
-                ),
-              ),
-            )
+            GetBuilder<DataController>(
+                init: DataController(),
+                builder: (val){
+                  return SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: FittedBox(
+                      child: FloatingActionButton(
+                        backgroundColor:  Color(0xff477b72),
+                        onPressed: () {
+                          val.getGenreData(dropdownvalue).then((value) {
+                            snapData=value;
+                            setState(() {
+                              Navigator.pushNamed(context,'filter-results');
+                            });
+                          });
+                        },
+                        child: Icon(
+                          Icons.filter_alt_outlined,
+                          size: 40,
+                          color:  Color(0xfff6f6f6),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+            ),
+
+
           ],
         ),
       ),

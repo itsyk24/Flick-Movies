@@ -40,8 +40,8 @@ var watchmonths = [
 int i=0;
 int j =0;
   List<String> countries = ["Brazil", "Nepal", "India", "China", "USA", "Canada"];
-  final List<String> genrelist =<String>['Web-Series','Anime','Mystery','Action','Adventure','Musical','Documentry','Crime','Drama','Comedy','War','Thriller'];
-  final List<bool> genreResponse = [false,false,false,false,false,false,false,false,false,false,false,false,];
+  final List<String> genrelist =<String>['Web-Series','Anime','Romance','War''Mystery','Action','Adventure','Musical','Documentry','Crime','Drama','Comedy','War','Thriller'];
+  final List<bool> genreResponse = [false,false,false,false,false,false,false,false,false,false,false,false,false,false];
   List<String> genreFinal =[];
 var selectedGenre =[];
   final List<String> entries = <String>['A', ];
@@ -525,7 +525,7 @@ iconEnabledColor: Colors.grey[600],
                       }else{
                         print('some error occured');
                       }
-
+Navigator.pushNamed(context,'home');
                     },
                   ),
                 ),

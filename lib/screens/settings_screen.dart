@@ -20,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    if(currentUserId ==snowId)Container(
                       width: 150,
                       child: const CircleAvatar(
                         backgroundColor: Colors.white,
@@ -35,10 +35,26 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if(currentUserId ==chinkuId)Container(
+                      width: 150,
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 80,
+                        backgroundImage: ExactAssetImage('lib/images/nez joker.png'),
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Constants.blackColor.withOpacity(.5),
+                          width: 1,
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
-                    SizedBox(
+
+                    if(currentUserId ==snowId)SizedBox(
                       child: Text(
                         'Moriarty',
                         style: TextStyle(
@@ -47,8 +63,23 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
+                    if(currentUserId ==chinkuId)SizedBox(
+                      child: Text(
+                        'Nez',
+                        style: TextStyle(
+                          color: Constants.blackColor,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    if(currentUserId ==snowId)Text(
                       'itsyk24@gmail.com',
+                      style: TextStyle(
+                        color: Constants.blackColor.withOpacity(.3),
+                      ),
+                    ),
+                    if(currentUserId ==chinkuId)Text(
+                      'nezmariam04@gmail.com',
                       style: TextStyle(
                         color: Constants.blackColor.withOpacity(.3),
                       ),

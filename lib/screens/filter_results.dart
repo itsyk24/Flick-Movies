@@ -1,3 +1,4 @@
+import 'package:flick2movies/screens/movie_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,13 +18,34 @@ class _FilterResultsState extends State<FilterResults> {
   Widget build(BuildContext context) {
     return
       Scaffold(
+        // Text(snapData.docs.length.toString()),
         appBar:AppBar(
+          actions: [
+          Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0xff1FAF9A),
+          ),
+          child: Center(
+            child: Text(
+              snapData.docs.length.toString(),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        )
+          ],
           title: Text('Filter Results'),
         ),
         body: Container(
           child: Column(
             children: [
-              Expanded(child: ListView.builder(itemBuilder:(context,index){
+              Expanded(child: ListView.builder(itemCount: snapData.docs.length,itemBuilder:(context,index){
                 return Padding(
                   padding: const EdgeInsets.all(0.0),
                   child: GestureDetector(
@@ -35,6 +57,7 @@ class _FilterResultsState extends State<FilterResults> {
                       currentMovieSnowRt=snapData.docs[index]['snow-rating'];
                       currentMovieRlsYr=snapData.docs[index]['year-of-release'];
                       currentMovieWtchYr=snapData.docs[index]['year'];
+                      currentMovieWtchMonth = snapData.docs[index]['month'];
 
                       Navigator.pushNamed(context, 'movie_details');
                     },
@@ -79,7 +102,7 @@ class _FilterResultsState extends State<FilterResults> {
                                 itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
                                 itemBuilder: (context, _) => Icon(
                                   Icons.star,
-                                  color: Color(0xff477b72),
+                                  color: Colors.blueAccent,
                                 ),
                                 onRatingUpdate: (rating) {
                                   print(rating);
@@ -102,8 +125,10 @@ class _FilterResultsState extends State<FilterResults> {
                     ),
                   ),
                 );
-        })
-              ) ],
+        }),
+
+              ) ,
+            ],
           ),
         ),
       );
